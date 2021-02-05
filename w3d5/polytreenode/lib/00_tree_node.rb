@@ -23,5 +23,31 @@ class PolyTreeNode
     end  
   end
 
+  def add_child(child_node)
+    child_node.parent = self
+  end
+
+  def remove_child(child_node)
+    raise "Error" unless children.include?(child_node)
+    child_node.parent = nil
+  end
+
+  def dfs(target_value)
+    return self if self == target_value
+    children.each { |child| dfs(child) }
+    nil 
+  end
+
+  def bfs(target_value)
+    
+    children.each do |child|
+      if child == target_value
+        return child
+      else
+        children.shift
+      end
+    end
+  end
+
 
 end
