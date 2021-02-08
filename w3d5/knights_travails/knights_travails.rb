@@ -54,7 +54,15 @@ class KnightPathFinder
         current_node.add_child(next_node)
       end
     end
-    
+  end
+
+  def find_path(end_pos)
+    self.dfs(end_pos)
+  end
+
+  def trace_path_back(node)
+    return [@root_node]
+    node.parent
   end
 
 end
