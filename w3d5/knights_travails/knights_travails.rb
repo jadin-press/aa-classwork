@@ -57,16 +57,16 @@ class KnightPathFinder
   end
 
   def find_path(end_pos)
-    end_node = self.dfs(end_pos)
+    end_node = @root_node.dfs(end_pos)
     trace_path_back(end_node)
   end
 
   def trace_path_back(node)
     path = [node]
-    until path.first == self
+    until path.first == @root_node
       path.unshift(path.first.parent)
     end
-    path.reverse
+    path
   end
 
 end
@@ -75,8 +75,8 @@ k = KnightPathFinder.new([0, 0])
 
 k.build_move_tree
 
-# p k.considered_positions.size
+p k.considered_positions.size
 
-# p KnightPathFinder.valid_moves([0,0])
+p KnightPathFinder.valid_moves([0,0])
 
 p k.find_path([7,1])
