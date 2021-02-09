@@ -8,7 +8,7 @@ class TicTacToeNode
   end
 
   def losing_node?(evaluator)
-
+    @board.over? && winner
   end
 
   def winning_node?(evaluator)
@@ -21,6 +21,7 @@ class TicTacToeNode
       @board.each_index do |j|
         if @board.empty?([i, j])
           TicTacToeNode.new(@board.dup, @next_mover_mark, @board[i, j])
+          @previous_move_pos = @board[i, j]
         end
       end
     end
