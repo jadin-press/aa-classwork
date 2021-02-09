@@ -22,13 +22,37 @@ class Manager < Employee
   end
     
   def bonus(multiplier)
-    
+    sum_salary * multiplier
   end
-
+  
   def sum_salary
     sum = 0
-    self.employees.each do |employee|
-      
+    queue = [self]
+    until queue.empty?
+      current_employee = queue.shift
+      current_employee.employees.each do |employee|
+        if employee.is_a?(Manager)
+          queue << employee
+          sum += employee.salary
+        else
+          sum += employee.salary
+        end
+      end
     end
+    sum
   end
 end
+
+
+ned = Manager.new("ned", 1000000, "founder", nil)
+darren = Manager.new("darren", 78000, "TA Manager", ned)
+shawna = Employee.new("shawna", 12000, "TA", darren)
+david = Employee.new("david", 10000, "TA", darren)
+
+ned.employees << darren
+darren.employees << shawna
+darren.employees << david
+
+p ned.bonus(5) # => 500_000
+p darren.bonus(4) # => 88_000
+p david.bonus(3) # => 30_000
