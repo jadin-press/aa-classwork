@@ -12,19 +12,19 @@ module Slideable
 
   def moves
     all_moves = []
-    if self.is_a(Rook)
+    if self.is_a?(Rook)
       horizontal_dirs.each do |dir|
         all_moves += grow_unblocked_moves_in_dir(dir[0], dir[1])
       end
     end
 
-    if self.is_a(Bishop)
+    if self.is_a?(Bishop)
       diagonal_dirs.each do |dir|
         all_moves += grow_unblocked_moves_in_dir(dir[0], dir[1])
       end
     end
 
-    if self.is_a(Queen)
+    if self.is_a?(Queen)
       horizontal_dirs.each do |dir|
         all_moves += grow_unblocked_moves_in_dir(dir[0], dir[1])
       end
@@ -32,7 +32,7 @@ module Slideable
         all_moves += grow_unblocked_moves_in_dir(dir[0], dir[1])
       end
     end
-    
+
     all_moves
   end
 
@@ -46,15 +46,15 @@ module Slideable
     pos_x = pos[0]
     pos_y = pos[1]
     while true
-      new_pos_x = pos_x + dx
-      new_pos_y = pos_y + dy
-      if (0..7).to_a.include?(new_pos_x) && (0..7).to_a.include?(new_pos_y)
-        if @board[[new_pos_x, new_pos_y]].nil?
-          possible_moves << [new_pos_x, new_pos_y]
-        elsif @board[[new_pos_x, new_pos_y]].color == self.color
+      pos_x += dx
+      pos_y += dy
+      if (0..7).to_a.include?(pos_x) && (0..7).to_a.include?(pos_y)
+        if @board[[pos_x, pos_y]].nil?
+          possible_moves << [pos_x, pos_y]
+        elsif @board[[pos_x, pos_y]].color == self.color
           break
-        elsif @board[[new_pos_x, new_pos_y]].color != self.color
-          possible_moves << [new_pos_x, new_pos_y]
+        elsif @board[[pos_x, pos_y]].color != self.color
+          possible_moves << [pos_x, pos_y]
           break
         end
       else

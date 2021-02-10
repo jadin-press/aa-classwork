@@ -45,18 +45,26 @@ class Board
         if !space.nil?
           space.to_s
         else
-          "N"
+          "N".colorize(:green)
         end
       end
     end
 
     new_grid.each do |row|
-      puts row.join(" ")
+      puts row.join(" ").on_light_red
     end
   end
 
 end
 
 
-board = Board.new()
-board.print
+# board = Board.new()
+# board.print
+# puts "--------------------"
+# board.move_piece([1,0], [3,0])
+# board.move_piece([1,3], [3,3])
+# board.move_piece([1,2], [3,2])
+# board.move_piece([1,4], [3,4])
+# board.print
+# puts "--------------------"
+# p board[[0,3]].moves
