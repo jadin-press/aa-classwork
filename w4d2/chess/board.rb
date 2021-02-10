@@ -58,13 +58,13 @@ class Board
 end
 
 
-# board = Board.new()
-# board.print
-# puts "--------------------"
-# board.move_piece([1,0], [3,0])
-# board.move_piece([1,3], [3,3])
-# board.move_piece([1,2], [3,2])
+board = Board.new()
+board.print
+puts "--------------------"
+board.move_piece([1,3], [2,3])
+board.move_piece([1,4], [2,4])
+board.move_piece([1,5], [2,5])
 # board.move_piece([1,4], [3,4])
 # board.print
 # puts "--------------------"
-# p board[[0,3]].moves
+p board[[0,4]].moves
