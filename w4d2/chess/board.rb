@@ -1,4 +1,5 @@
 require_relative 'piece.rb'
+require_relative 'connector.rb'
 
 class Board
   def initialize
@@ -52,7 +53,7 @@ class Board
 end
 
 
-# board = Board.new()
-# board.print
-# board.move_piece([1,3], [3,3])
-# board.print
+board = Board.new()
+board.print
+board.move_piece([1,3], [3,3])
+board.print

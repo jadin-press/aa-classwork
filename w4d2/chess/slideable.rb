@@ -11,7 +11,29 @@ module Slideable
   end
 
   def moves
+    all_moves = []
+    if self.is_a(Rook)
+      horizontal_dirs.each do |dir|
+        all_moves += grow_unblocked_moves_in_dir(dir[0], dir[1])
+      end
+    end
+
+    if self.is_a(Bishop)
+      diagonal_dirs.each do |dir|
+        all_moves += grow_unblocked_moves_in_dir(dir[0], dir[1])
+      end
+    end
+
+    if self.is_a(Queen)
+      horizontal_dirs.each do |dir|
+        all_moves += grow_unblocked_moves_in_dir(dir[0], dir[1])
+      end
+      diagonal_dirs.each do |dir|
+        all_moves += grow_unblocked_moves_in_dir(dir[0], dir[1])
+      end
+    end
     
+    all_moves
   end
 
   private
@@ -39,5 +61,6 @@ module Slideable
         break
       end
     end
+    possible_moves
   end
 end
