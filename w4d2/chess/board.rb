@@ -4,11 +4,16 @@ require_relative 'connector.rb'
 class Board
   def initialize
     @rows = Array.new(8) { Array.new(8, nil) }
-    (0..7).each do |i|
-      @rows[0][i] = Piece.new
-      @rows[1][i] = Piece.new
-      @rows[6][i] = Piece.new
-      @rows[7][i] = Piece.new
+    fill_board
+  end
+
+  def fill_board
+    back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+    back_row.each_with_index do |piece, i|
+      @rows[0][i] = piece.new(:white, self, [0, i])
+      @rows[1][i] = Pawn.new(:white, self, [1, i])
+      @rows[7][i] = piece.new(:black, self, [7, i])
+      @rows[6][i] = Pawn.new(:black, self, [6, i])
     end
   end
 
@@ -37,8 +42,8 @@ class Board
   def print
     new_grid = @rows.to_a.map do |row|
       row.to_a.map do |space|
-        if space.is_a?(Piece)
-          "P"
+        if !space.nil?
+          space.to_s
         else
           "N"
         end
@@ -54,6 +59,4 @@ end
 
 
 board = Board.new()
-board.print
-board.move_piece([1,3], [3,3])
 board.print
