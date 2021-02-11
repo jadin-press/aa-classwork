@@ -3,7 +3,7 @@ require_relative 'connector.rb'
 
 class Board
   def initialize
-    @rows = Array.new(8) { Array.new(8, nil) }
+    @rows = Array.new(8) { Array.new(8, NullPiece.instance) }
     fill_board
   end
 
@@ -18,7 +18,7 @@ class Board
   end
 
   def move_piece(start, end_pos)
-    if self[start].nil?
+    if self[start].is_a?(NullPiece)
       raise "There is no piece at this position"
     end
     size = (0..7).to_a
@@ -27,8 +27,9 @@ class Board
     end
 
     piece = self[start]
+    piece.pos = end_pos
     self[end_pos] = piece
-    self[start] = nil
+    self[start] = NullPiece.instance
   end
 
   def [](position)
@@ -42,16 +43,12 @@ class Board
   def print
     new_grid = @rows.to_a.map do |row|
       row.to_a.map do |space|
-        if !space.nil?
-          space.to_s
-        else
-          "N".colorize(:green)
-        end
+        space.to_s
       end
     end
 
     new_grid.each do |row|
-      puts row.join(" ").on_light_red
+      puts " ".on_light_red.underline + row.join(" | ").on_light_red.underline + " ".on_light_red.underline
     end
   end
 
@@ -61,10 +58,7 @@ end
 # board = Board.new()
 # board.print
 # puts "--------------------"
-# board.move_piece([1,3], [2,3])
-# board.move_piece([1,4], [2,4])
-# board.move_piece([1,5], [2,5])
-# board.move_piece([1,4], [3,4])
+# # p board[[1,0]].moves
+# board.move_piece([1,3], [5,3])
 # board.print
-# puts "--------------------"
-# p board[[0,4]].moves
+# p board[[6,4]].moves

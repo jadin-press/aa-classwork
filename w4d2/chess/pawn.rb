@@ -9,11 +9,11 @@ class Pawn < Piece
   def moves
     pos_x, pos_y = pos
     forward_moves = forward_steps.map { |step| [step[0] + pos_x, step[1] + pos_y] }
-    forward_moves.select! { |move| @board[move].nil? }
-    forward_moves + side_attacks.map { |step| [step[0] + pos_x, step[1] + pos_y] }
+    forward_moves.select! { |move| @board[move].is_a?(NullPiece) }
+    forward_moves + side_attacks
   end
 
-  private
+  # private
   def at_start_row?
     #if white and row 1 or if black and row 6
     if color == :white && pos[0] == 1
@@ -43,8 +43,7 @@ class Pawn < Piece
       steps = [[1, 0]]
     end
 
-    steps.each { |step| step[0] *= forward_steps }
-    steps.select 
+    steps.map! { |step| [step[0] * forward_dir, step[1]] }
   end
 
   def side_attacks
@@ -55,7 +54,7 @@ class Pawn < Piece
     new_col1 = pos[1] + 1
     new_col2 = pos[1] - 1
     sides = [[new_row, new_col1], [new_row, new_col2]]
-    sides.select { |side| !@board[side].nil? && @board[side].color != color }
+    sides.select { |side| !@board[side].is_a?(NullPiece) && @board[side].color != color }
   end
 
 end
