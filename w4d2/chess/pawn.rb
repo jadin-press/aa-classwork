@@ -7,7 +7,10 @@ class Pawn < Piece
   end
 
   def moves
-
+    pos_x, pos_y = pos
+    forward_moves = forward_steps.map { |step| [step[0] + pos_x, step[1] + pos_y] }
+    forward_moves.select! { |move| @board[move].nil? }
+    forward_moves + side_attacks.map { |step| [step[0] + pos_x, step[1] + pos_y] }
   end
 
   private
@@ -40,7 +43,8 @@ class Pawn < Piece
       steps = [[1, 0]]
     end
 
-    steps.each {|step| step[0] *= forward_steps }
+    steps.each { |step| step[0] *= forward_steps }
+    steps.select 
   end
 
   def side_attacks
