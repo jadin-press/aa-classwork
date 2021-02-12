@@ -32,7 +32,7 @@ module Stepable
     new_pos_x = pos_x + dir[0]
     new_pos_y = pos_y + dir[1]
     if (0..7).to_a.include?(new_pos_x) && (0..7).to_a.include?(new_pos_y)
-      if @board[[new_pos_x, new_pos_y]].nil?
+      if @board[[new_pos_x, new_pos_y]].is_a?(NullPiece)
         return true
       elsif @board[[new_pos_x, new_pos_y]].color != self.color
         return true

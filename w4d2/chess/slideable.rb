@@ -49,7 +49,7 @@ module Slideable
       pos_x += dx
       pos_y += dy
       if (0..7).to_a.include?(pos_x) && (0..7).to_a.include?(pos_y)
-        if @board[[pos_x, pos_y]].nil?
+        if @board[[pos_x, pos_y]].is_a?(NullPiece)
           possible_moves << [pos_x, pos_y]
         elsif @board[[pos_x, pos_y]].color == self.color
           break
