@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+.ingredients-list {
+    list-style: square inside;
+}
+
+ol {
+    list-style: circle;
+}
+
+header > img {
+    width: 100px;
+}
+
+ul li a {
+    text-decoration-line: none;
+    color: green
+}
+
+html {
+    background-color: yellow;
+}
+
+input[type="radio"], select {
+    cursor: pointer;
+    outline: none;
+}
+
+last-child {
+    background-color: gold;
+}
+
