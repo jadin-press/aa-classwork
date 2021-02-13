@@ -26,6 +26,8 @@ def third_anagram?(string_1, string_2)
   sorted_1 == sorted_2
 end
 
+#n^2 - because both inputs are strings?
+#n^2 + m^2
 def quick_sort(arr)
   return [] if arr.length == 0
   return arr if arr.length == 1
@@ -35,5 +37,27 @@ def quick_sort(arr)
   quick_sort(left) + [pivot] + quick_sort(right)
 end
 
-p third_anagram?("elvis", "lives")
-p third_anagram?("elvis", "ljkjd")
+# p third_anagram?("elvis", "lives")
+# p third_anagram?("elvis", "ljkjd")
+
+
+
+def fourth_anagram_b?(string1, string2)
+    char_count1 = Hash.new{|h, k| h[k] = 0}
+    char_count2 = Hash.new{|h, k| h[k] = 0}
+    string1.each_char {|char| char_count1[char] += 1}
+    string2.each_char {|char| char_count2[char] += 1}
+    char_count1 == char_count2
+end
+
+def fourth_anagram?(string1, string2)
+    char_count = Hash.new{|h, k| h[k] = 0}
+    string1.each_char {|char| char_count[char] += 1}
+    string2.each_char {|char| char_count[char] -= 1}
+    char_count.values.all?(0)
+end
+
+#time complexity = O(n)
+
+p fourth_anagram_b?("elvis", "lives")
+p fourth_anagram_b?("elvis", "ljkjd")
