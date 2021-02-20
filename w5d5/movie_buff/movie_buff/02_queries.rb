@@ -4,18 +4,18 @@ def eighties_b_movies
   # Show the id, title, year, and score.
 
   Movie.select(:id, :title, :yr, :score).where(yr: 1980..1989, score: 3..5)
-
 end
 
 def bad_years
   # List the years in which a movie with a rating above 8 was not released.
-  Movie.group(:yr).having('Max(score) < 8').pluck(:yr)
+  Movie.group(:yr).having("Max(score) < 8").pluck(:yr)
 end
 
 def cast_list(title)
   # List all the actors for a particular movie, given the title.
   # Sort the results by starring order (ord). Show the actor id and name.
 
+  Actor.select(:id, :name).joins(:movies).where(movies: { title: title }).order(castings: { ord: desc })
 end
 
 def vanity_projects
