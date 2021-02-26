@@ -18,7 +18,7 @@ Artwork.create(title: 'Trees', image_url: 'Trees.com', artist_id: 3)
 Artwork.create(title: 'Birds', image_url: 'birdies.com', artist_id: 4)
 
 ArtworkShare.create(artwork_id: 1, viewer_id: 4)
-ArtworkShare.create(artwork_id:2 , viewer_id: 3)
+ArtworkShare.create(artwork_id: 2, viewer_id: 3)
 ArtworkShare.create(artwork_id: 4, viewer_id: 1)
 ArtworkShare.create(artwork_id: 2, viewer_id: 1)
 ArtworkShare.create(artwork_id: 1, viewer_id: 2)
