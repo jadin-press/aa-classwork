@@ -1,7 +1,7 @@
 class ArtworksController < ApplicationController
   def index
-    artworks_owned = Artwork.find_by(id: params[])
-    render json: 
+    artworks_owned = Artwork.find_by(id: params[:id])
+    render json: artworks_owned
   end
 
   def show

@@ -1,0 +1,23 @@
+<h1>These are all the cats</h1>
+
+<table>
+
+  <tr>
+    <th>Birthday</th>
+    <th>Color</th>
+    <th>Name</th>
+    <th>Sex</th>
+    <th>Description</th>
+  </tr>
+  
+  <%@cats.each do |cat|%>
+    <tr>
+      <td><%= cat.birth_date %></td>
+      <td><%= cat.color %></td>
+      <td><%= cat.name %></td>
+      <td><%= cat.sex %></td>
+      <td><%= cat.description %></td>
+    </tr>
+  <% end %>
+    
+</table>

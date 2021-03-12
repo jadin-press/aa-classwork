@@ -875,3 +875,21 @@ Processing by ArtworksController#index as */*
 Completed 200 OK in 22ms (Views: 6.4ms | ActiveRecord: 12.5ms)
 
 
+Started GET "/users/2/artworks" for ::1 at 2021-02-26 09:37:32 -0800
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/jadin/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.5/lib/active_record/log_subscriber.rb:98
+
+SyntaxError - syntax error, unexpected keyword_end
+  end
+  ^~~
+/Users/jadin/dev/app_academy/aa-classwork/w6d3/routes_and_controllers/app/controllers/artworks_controller.rb:41: syntax error, unexpected end-of-input, expecting keyword_end:
+  app/controllers/artworks_controller.rb:5:in `'
+
+Started GET "/users/2/artworks" for ::1 at 2021-02-26 09:39:29 -0800
+Processing by ArtworksController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mArtwork Load (1.4ms)[0m  [1m[34mSELECT  "artworks".* FROM "artworks" WHERE "artworks"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/artworks_controller.rb:3
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 7.3ms)
+
+

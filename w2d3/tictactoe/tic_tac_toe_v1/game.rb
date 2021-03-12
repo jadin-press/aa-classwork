@@ -34,3 +34,6 @@ class Game
         puts "Draw"
     end
 end
+
+game = Game.new("X", "O")
+game.play

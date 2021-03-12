@@ -1,0 +1,102 @@
+Basic Setup: Database, RSpec, and Test Files
+  Set up a test database if necessary
+    rails db:create to create development and test databases
+    rails db:test:load to sync test DB after migrations
+  Install RSpec using rails generate rspec:Install
+    .rspec, spec/, spec_helper.rb, rails_helper.rb
+    add configs to .rspec(color, require spec_helper, format_documentation)
+  Auto-Generate Test Files
+    change the config/application.rb file to use rspec
+
+Basic Setup: Configurations
+  In application.rb:
+    config.generators do |g|
+      g.test_framework :rspec,
+        :fixtures => false,
+        :view_specs => false,
+        :helper_specs => false,
+        :routing_specs => false,
+        :controller_specs => true,
+        :request_specs => false
+      g.fixture_replacement :factory_bot, :dir => "spec/factories"
+
+  rails_helper.rb
+    Shoulda:Matchers.configure do |config|
+      config.integrate do |with|
+        with.test_framework :rspec
+        with.library :rails
+      end
+    end
+
+Create rspec file and spec ddirectory: "be rails g spec:install"
+  creates 
+    .rspec
+    spec/ directory
+    spec/spec_helper.rb
+    spec/rails_helper.rb
+
+In .rspec
+  add
+    --require spec_helper 
+    --color
+    --format documentation
+
+In application.rb:
+    config.generators do |g|
+      g.test_framework :rspec,
+        :fixtures => false,
+        :view_specs => false,
+        :helper_specs => false,
+        :routing_specs => false,
+        :controller_specs => true,
+        :request_specs => false
+        g.fixture_replacement :factory_bot, :dir => "spec/factories"
+      end
+    end
+
+In rails_helper.rb
+  Add "Shoulda Matcher" configuration
+    Shoulda:Matchers.configure do |config|
+      config.integrate do |with|
+        with.test_framework :rspec
+        with.library :rails
+      end
+    end
+
+Unit Testing: Models
+  Small in scope
+    Test only touch model code
+    Tests can touch the database
+  Things to test
+    Validations/error messages
+    Associations
+    Class AND instance methods (not private)
+
+Shoulda Matchers Syntax
+  Validations
+    it { should validate_presence_of(:username) }
+    it { should validate_presence_of(:password_digest) }
+    it { should validate_length_of(:password).is_at_least(6) }
+
+  Associations
+    it { should have_many(:chirps) }
+    it { should belong_to(:user) }
+
+"rails g rspec:model user" in terminal
+  creates spec/models/user_spec.rb
+  creates spec/factories/users.rb
+
+  user_spec.rb
+    RSpec.describe User, type: model do
+      describe 'validations' do
+        it "validates the presence of a username" do
+          incomplete_user = { User.new(username: "", age: 99, email: "a@a.com", password: "123456") }
+          expect(incomplete_user).to_not be_valid
+        end
+      end
+    end
+
+Run: "be rspec ./spec/models/user_spec.rb"
+
+
+    
