@@ -37,4 +37,6 @@ class User < ApplicationRecord
     self.session_token ||= self.class.generate_session_token
   end
 
+  
+
 end
