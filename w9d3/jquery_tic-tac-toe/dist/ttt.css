@@ -1,0 +1,21 @@
+ul {
+  list-style: none;
+}
+
+ul {
+  display: flex;
+  width: 600px;
+  flex-wrap: wrap;
+  background-color: blue;
+  margin: 25px auto;
+  border: solid black 5px;
+}
+
+
+
+li {
+  height: 180px;
+  width: 30%;
+  background-color: coral;
+  border: solid black 5px;
+}
