@@ -51,16 +51,24 @@ class TodoForm extends React.Component {
           <label>Title:
             <input type='text' value={this.state.title} onChange={this.updateTitle}/>
           </label>
-        
-        <label>Body:
-          <input type='text' value={this.state.body} onChange={this.updateBody} />
-        </label>
-        
+
+          <br/>
+          <label>Body:
+            <input type='text' value={this.state.body} onChange={this.updateBody} />
+          </label>
+          <br/>
+
         <label>Done:
-          <input type='radio' name='done' value='True' onChange={this.updateDone} />
-          <input type='radio' name='done' value='False' onChange={this.updateDone} />
+          <label>Yes
+            <input type='radio' name='done' value='True' onChange={this.updateDone} />
+          </label>
+          <label>No
+            <input type='radio' name='done' value='False' onChange={this.updateDone} />
+          </label>
+          
         </label>
 
+        <br/>
         <input type="submit" value='Submit'/>
 
       </form>
