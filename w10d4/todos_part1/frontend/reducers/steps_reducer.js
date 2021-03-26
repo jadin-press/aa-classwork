@@ -3,12 +3,12 @@ import { RECEIVE_STEPS, RECEIVE_STEP, REMOVE_STEP } from '../actions/step_action
 const stepsReducer = (state = {}, action) => {
   Object.freeze(state);
   const nextState = Object.assign({}, state);
-  const newState = {}
+  const newState = {};
 
   switch (action.type) {
     case RECEIVE_STEPS:
-      action.steps.forEach((el) => {
-        newState[el.id] = el;
+      action.steps.forEach((step) => {
+        newState[step.id] = step;
       })
       return newState;
     case RECEIVE_STEP:
@@ -23,3 +23,5 @@ const stepsReducer = (state = {}, action) => {
 };
 
 export default stepsReducer;
+
+// action.step = { id:1, todo_id: 1, title: "Get hose", done: false }
