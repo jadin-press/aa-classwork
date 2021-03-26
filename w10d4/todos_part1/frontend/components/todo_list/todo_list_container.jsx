@@ -11,4 +11,9 @@ const mapDispatchToProps = (dispatch) => {
   return ({ receiveTodo: todo => dispatch(todoActions.receiveTodo(todo)) })
 }
 
-export default connect(maxStateToProps, mapDispatchToProps)(TodoList);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+
+// props: {
+//     todos: allTodos(state)
+//     receiveTodo: todo => dispatch(todoActions.receiveTodo(todo))
+// }
